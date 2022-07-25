@@ -172,7 +172,7 @@ class AlignedDataset(BaseDataset):
         E_tensor = transform_A(E)
 
         # Pose
-        pose_name = B_path.replace('.jpg', '_keypoints.json').replace(
+        pose_name = B_path.replace('.jpg', '_keypoints.json').replace('.png', '_keypoints.json').replace(
             'test_img', 'test_pose')
         with open(osp.join(pose_name), 'r') as f:
             pose_label = json.load(f)
@@ -200,7 +200,7 @@ class AlignedDataset(BaseDataset):
         P_tensor = pose_map
 
         input_dict = {'label': A_tensor, 'image': B_tensor,
-                      'path': A_path, 'name': A_path.split("/")[-1].split("\\")[1],
+                      'path': A_path, 'name': A_path.split("/")[-1],
                       'edge': E_tensor, 'color': C_tensor, 'mask': M_tensor, 'colormask': MC_tensor, 'pose': P_tensor
                       }
 

@@ -8,9 +8,9 @@ import os
 import numpy as np
 import torch
 from torch.autograd import Variable
-from tensorboardX import SummaryWriter
+#from tensorboardX import SummaryWriter
 import cv2
-writer = SummaryWriter('runs/G1G2')
+#writer = SummaryWriter('runs/G1G2')
 SIZE = 320
 NC = 14
 
@@ -99,8 +99,8 @@ def main():
         all_clothes_label = changearm(data['label'])
 
         ############## Forward Pass ######################
-        fake_image, warped_cloth, refined_cloth = model(Variable(data['label'].cuda()), Variable(data['edge'].cuda()), Variable(img_fore.cuda()), Variable(
-            mask_clothes.cuda()), Variable(data['color'].cuda()), Variable(all_clothes_label.cuda()), Variable(data['image'].cuda()), Variable(data['pose'].cuda()), Variable(data['image'].cuda()), Variable(mask_fore.cuda()))
+        fake_image, warped_cloth, refined_cloth = model(Variable(data['label']), Variable(data['edge']), Variable(img_fore), Variable(
+            mask_clothes), Variable(data['color']), Variable(all_clothes_label), Variable(data['image']), Variable(data['pose']), Variable(data['image']), Variable(mask_fore))
 
         # make output folders
         output_dir = os.path.join(opt.results_dir, opt.phase)
